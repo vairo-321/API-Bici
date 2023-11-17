@@ -1,9 +1,6 @@
 package utnfrc.backend.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,10 +17,13 @@ public class Estacion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "NOMBRE", nullable = false)
     private String nombre;
+    @Column(name = "LATITUD", nullable = false)
     private double latitud;
+    @Column(name = "LONGITUD", nullable = false)
     private double longitud;
-
+    @Column(name = "FECHA_HORA_CREACION")
     private LocalDateTime fecha_hora_creacion;
 
 }

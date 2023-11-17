@@ -74,7 +74,4 @@ public class EstacionService {
     private double calcularDistancia(double lat, double longi, Estacion estacion){
         return Math.sqrt(Math.pow((lat * -1.0 + estacion.getLatitud()), 2.0) + Math.pow((longi * -1.0 + estacion.getLongitud()), 2.0));
     }
-
-
-
 }
