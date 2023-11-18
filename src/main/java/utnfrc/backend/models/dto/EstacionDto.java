@@ -15,6 +15,4 @@ public class EstacionDto {
     private double latitud;
     private double longitud;
     private LocalDateTime fecha_hora_creacion;
-
 }
-
