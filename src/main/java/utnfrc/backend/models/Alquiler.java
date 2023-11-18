@@ -20,10 +20,13 @@ public class Alquiler {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String nombre;
-    private double latitud;
-    private double longitud;
-
-    private LocalDateTime fecha_hora_creacion;
+    private String id_cliente;
+    private int estado;
+    private int estacion_retiro;
+    private int estacion_devolucion;
+    private LocalDateTime fecha_hora_retiro;
+    private LocalDateTime fecha_hora_devolucion;
+    private double monto;
+    private int id_tarifa;
 
 }
