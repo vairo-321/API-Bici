@@ -3,18 +3,26 @@ package utnfrc.backend.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import utnfrc.backend.models.Estacion;
+import utnfrc.backend.models.dto.EstacionDto;
 import utnfrc.backend.repository.EstacionRepository;
+import utnfrc.backend.models.dto.transformations.EstacionDtoMapper;
+import utnfrc.backend.models.dto.transformations.EstacionMapper;
 
 import java.util.Iterator;
+import java.util.Optional;
 
 @Service
 public class EstacionService {
 
     private final EstacionRepository repositorio;
+    private final EstacionDtoMapper estacionDtoMapper;
+    private final EstacionMapper estacionMapper;
 
     @Autowired
-    public EstacionService(EstacionRepository repositorio) {
+    public EstacionService(EstacionRepository repositorio, EstacionDtoMapper estacionDtoMapper, EstacionMapper estacionMapper) {
         this.repositorio = repositorio;
+        this.estacionDtoMapper = estacionDtoMapper;
+        this.estacionMapper = estacionMapper;
     }
 
     public Iterable<Estacion> getAll() {
@@ -30,6 +38,14 @@ public class EstacionService {
         catch (ServiceException e) {
             throw e;
         }
+    }
+
+    public EstacionDto delete(Long id) {
+        Optional<Estacion> optionalCategory = repositorio.findById(id);
+        optionalCategory.ifPresent(repositorio::delete);
+        return optionalCategory
+                .map(estacionDtoMapper)
+                .orElseThrow();
     }
 
     private Estacion buscarEstacionCerca(double latitud, double longitud) throws ServiceException

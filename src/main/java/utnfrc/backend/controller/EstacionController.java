@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import utnfrc.backend.models.Estacion;
+import utnfrc.backend.models.dto.EstacionDto;
 import utnfrc.backend.services.EstacionService;
 import utnfrc.backend.services.ServiceException;
 
@@ -36,6 +37,12 @@ public class EstacionController {
         }
 
         return ResponseEntity.ok(servicio.postEstacion(estacion));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<EstacionDto> delete(@PathVariable Long id) {
+        EstacionDto categoryDeleted = servicio.delete(id);
+        return ResponseEntity.ok(categoryDeleted);
     }
 
     @GetMapping("/distancia")
