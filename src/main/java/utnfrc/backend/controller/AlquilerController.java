@@ -20,7 +20,6 @@ public class AlquilerController {
 
     @PostMapping
     public ResponseEntity<Alquiler> crearAlquiler(@RequestBody Alquiler alquiler) {
-
         //Si se da error. crear nuevo alquiler y setear con RequestBody DTO
         return ResponseEntity.ok(servicio.crearAlquiler(alquiler));
     }
